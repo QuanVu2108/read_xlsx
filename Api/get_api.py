@@ -6,18 +6,9 @@ app = Flask(__name__)
 
 data = dict()
 
-# @app.route('/all')
-# def book_list():
-	# data = get_data(all)
-	# response = Response(json.dumps(data, indent=4, sort_keys=True), status=200, mimetype=JSON_MIME_TYPE)
-	# return response
-
-
-@app.route('/<string:col_id>')
-def data_detail(col_id):
-    if col_id != 'all' and len(col_id) > 2:
-        abort(404)
-    data = get_data(col_id)
+@app.route('/<string:file_id>/<string:col_id>')
+def data_detail(file_id, col_id):
+    data = get_data(file_id, col_id)
     if data is None:
         abort(404)
 
